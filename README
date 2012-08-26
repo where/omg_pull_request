@@ -1,0 +1,7 @@
+TODO:
+
+1.  Make gem.  Make gem work if you run the bin in the rails proj
+2.  Refactor config delegation
+3.  Make a real README
+4.  Verify lolcommits + prowl still work
+5.  Fix tests / write tests.

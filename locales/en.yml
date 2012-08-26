@@ -1,0 +1,23 @@
+en:
+  error:
+    github:
+      conflict: "### Unable To Run  \nA conflict prevented the test suite from being run.  Please manually resolve the conflict and the tests will be rerun.\nFrom `%{abbr_from_sha}` to `%{abbr_to_sha}`"
+
+  start:
+    banner: "OmgPullRequest %{version}\n
+From:         %{abbr_from_sha}\n
+To:           %{abbr_to_sha}\n
+Issue Number: %{issue_number}"
+    github:
+      message: ":trollface: Running tests: `%{abbr_from_sha}` to `%{abbr_to_sha}`"
+      lolcommits:
+        message: ":trollface: Running tests: `%{abbr_from_sha}` to `%{abbr_to_sha}\n\nThis is what hard work looks like\n![Pretty Pictures](%{animation_url})"
+
+  completed:
+    github:
+      success: ":thumbsup: :shipit: \n### Tests Passed  \nFrom `%{abbr_from_sha}` to `%{abbr_to_sha}`\nTests took %{minutes} minutes, %{seconds} seconds.\n[results](%{output_file})"
+      failure: ":thumbsdown: :fire: :broken_heart: \n### Tests Failed \n `%{abbr_from_sha}` to `#{abbr_to_sha}`\nTests too %{minutes} minutes, %{seconds} seconds.\n[results](%{output_file})"
+    prowl:
+      success: "Thumbs up, bro.\nPull request #%{issue_number}\n%{title}\nTests took %{minutes} minutes, %{seconds} seconds."
+      failure: "Sad face to the max, homie.\nPull request #%{issue_number}\n%{title}\nTests took %{minutes} minutes, %{seconds} seconds."
+

@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require './lib/omg_pull_request'
+
+include OmgPullRequest
+
+I18n.load_path = [
+  './locales/omg.yml',
+  './locales/en.yml'
+]
+I18n.locale = CONFIGURATION.locale if CONFIGURATION.locale
+
+TestRunner.start_daemon

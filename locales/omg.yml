@@ -1,0 +1,20 @@
+omg:
+  error:
+    github:
+      conflict: "OMG"
+
+  start:
+    banner: "OMG"
+    github:
+      message: "OMG"
+      lolcommits:
+        message: "OMG"
+
+  completed:
+    github:
+      success: "OMG"
+      failure: "OMG"
+    prowl:
+      success: "OMG"
+      failure: "OMG"
+
