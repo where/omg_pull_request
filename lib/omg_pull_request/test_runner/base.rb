@@ -116,11 +116,8 @@ module OmgPullRequest
         logger.store_logs!("#{abbr_from_sha}-#{abbr_to_sha}-#{Time.now.to_i}.txt")
       end
 
-      [:local_repo, :database_yml].each do |attr|
-        define_method attr do
-          self.configuration.send(attr)
-        end
-      end
+      extend Configuration::Helpers
+      delegate_config_to(:configuration, :local_repo, :database_yml)
 
       def t(key, options=Hash.new)
         I18n.t(key, options)

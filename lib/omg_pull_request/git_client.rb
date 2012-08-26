@@ -25,6 +25,7 @@ module OmgPullRequest
 
     private
 
-    Configuration.delegate_to(self.configuration, :local_repo)
+    extend Configuration::Helpers
+    delegate_config_to(:configuration, :local_repo)
   end
 end

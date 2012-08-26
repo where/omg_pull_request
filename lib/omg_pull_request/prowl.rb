@@ -20,6 +20,7 @@ module OmgPullRequest
         :description => msg
       }.merge( options )
 
+      puts "Notifying: #{keys.join(', ')}"
       keys.each do |key|
         open_connection.post PROWL_PATH, opts.merge(:apikey => key)
       end
@@ -70,6 +71,7 @@ module OmgPullRequest
       end
     end
 
-    Configuration.delegate_to(self.configuration, :prowl)
+    extend Configuration::Helpers
+    delegate_config_to(:configuration, :prowl)
   end
 end

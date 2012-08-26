@@ -43,9 +43,13 @@ module OmgPullRequest
       "OmgPullRequest::TestRunner::#{config['runner'] || 'Rails'}".constantize
     end
 
-    def self.delegate_to(config, *attrs)
-      attrs.each do |attr|
-        config.send(attr)
+    module Helpers
+      def delegate_config_to(config, *attrs)
+        attrs.each do |attr|
+          define_method attr do
+            self.send(config).send(attr)
+          end
+        end
       end
     end
   end

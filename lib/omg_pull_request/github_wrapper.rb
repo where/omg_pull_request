@@ -40,7 +40,8 @@ module OmgPullRequest
 
     private
 
-    Configuration.delegate_to(self.configuration, :repo_owner, :repo, :github_credentials)
+    extend Configuration::Helpers
+    delegate_config_to(:configuration, :repo_owner, :repo, :github_credentials)
 
     def github_client
       @github_client ||= Github.new(github_credentials.symbolize_keys)
