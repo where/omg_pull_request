@@ -4,7 +4,7 @@ require 'rake/testtask'
 
 include Rake::DSL
 
-Rake::TestTask.new do |t|
+Rake::TestTask.new("test:units") do |t|
   t.pattern = 'test/units/**/*_test.rb'
 end
 
@@ -25,6 +25,7 @@ namespace :test do
   end
 end
 
-task :default => [:test, "test:integration"]
+task :default => ["test:units", "test:integration"]
+
 
 
