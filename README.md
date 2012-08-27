@@ -62,6 +62,10 @@ This is a sample config, with sensitive data scrubbed for running tests on the r
 * In a screen session run `omg_pull_request`.
 * Enjoy.
 
+### Configuration
+
+A detailed specification of the available configuration options can be found in the markdown file located docs/configuration.md.
+
 ### Example
 
 You can see an example of a successful pull request that has been `omg_pull_request`ified here: https://github.com/where/omg_pull_request/pull/1.  And an example of a failed pull request that has been `omg_pull_request`ified here: https://github.com/where/omg_pull_request/pull/2.
