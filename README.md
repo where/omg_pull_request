@@ -63,4 +63,4 @@ This is a sample config, with sensitive data scrubbed for running tests on the r
 
 ### Example
 
-You can see an example of a successful pull request that has been `omg_pull_request`ified here: https://github.com/where/omg_pull_request/pull/1.
+You can see an example of a successful pull request that has been `omg_pull_request`ified here: https://github.com/where/omg_pull_request/pull/1.  And an example of a failed pull request that has been `omg_pull_request`ified here: https://github.com/where/omg_pull_request/pull/2.
