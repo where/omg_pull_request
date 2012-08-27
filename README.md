@@ -43,7 +43,8 @@ github_credentials:
   login: github_user 
   password: github_password
 
-aws:
+storage:
+  provider: Aws
   access_token: s3_token
   secret_token: s3_secret 
   bucket: s3_bucket

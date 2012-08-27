@@ -28,7 +28,7 @@ module OmgPullRequest
   CONTEXT           = Context.new
   GITHUB_WRAPPER    = GithubWrapper.new(:configuration => CONFIGURATION)
 
-  STORE             = Storage::Gist.new(:configuration => CONFIGURATION,
+  STORE             = CONFIGURATION.storage_class.new(:configuration => CONFIGURATION,
     :github_wrapper => GITHUB_WRAPPER)
 end
 

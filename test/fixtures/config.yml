@@ -8,9 +8,7 @@ github_credentials:
   password: pull_request
 
 storage:
-  access_token: ACCESS_TOKEN_HERE
-  secret_token: SECRET_TOKEN_HERE
-  bucket: BUCKET_HERE
+  provider: Gist
 
 prowl:
   application: OMG_PULL_REQUEST

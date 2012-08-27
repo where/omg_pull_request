@@ -45,6 +45,10 @@ module OmgPullRequest
       "OmgPullRequest::TestRunner::#{config['runner'] || 'Rails'}".constantize
     end
 
+    def storage_class
+      "OmgPullRequest::Storage::#{(config['storage'] || Hash.new)['provider'] || 'Gist'}".constantize
+    end
+
     module Helpers
       def delegate_config_to(config, *attrs)
         attrs.each do |attr|
