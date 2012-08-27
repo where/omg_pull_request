@@ -14,7 +14,7 @@ module OmgPullRequest
 
 
     [:repo_owner, :repo, :database_yml, :aws, :github_credentials,
-      :lolcommits_server_url, :prowl, :locale].each do |attr|
+      :lolcommits_server_url, :prowl, :locale, :storage].each do |attr|
       define_method attr do
         self.config[attr.to_s]
       end

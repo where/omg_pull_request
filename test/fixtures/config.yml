@@ -7,7 +7,7 @@ github_credentials:
   login: omg
   password: pull_request
 
-aws:
+storage:
   access_token: ACCESS_TOKEN_HERE
   secret_token: SECRET_TOKEN_HERE
   bucket: BUCKET_HERE

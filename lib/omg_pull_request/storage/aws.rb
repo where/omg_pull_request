@@ -1,7 +1,7 @@
 module OmgPullRequest
-  module Aws
-    class Store
-      attr_accessor :storage_config
+  module Storage 
+    class Aws
+      attr_accessor :configuration, :github_wrapper
       def initialize(attributes={})
         attributes.each do |attr, value|
           self.send("#{attr}=", value)
@@ -22,7 +22,7 @@ module OmgPullRequest
 
       [:access_token, :secret_token, :bucket].each do |attr|
         define_method attr do
-          storage_config[attr]
+          configuration.storage[attr.to_s]
         end
       end
     end
