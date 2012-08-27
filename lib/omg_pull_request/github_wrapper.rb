@@ -9,7 +9,7 @@ module OmgPullRequest
     end
 
     def author_logins(pull_request)
-      [login, GITHUB.users.get(:user => logic).email]
+      [pull_request.user.login, github_client.users.get(:user => pull_request.user.login).email]
     end
 
     def all_logins(pull_request)

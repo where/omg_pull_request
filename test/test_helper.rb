@@ -1,9 +1,11 @@
 require 'minitest/autorun'
 require 'fakeweb'
+require 'mocha'
 
 ENV['yml'] = File.join(File.expand_path("..", __FILE__), "fixtures/config.yml")
 require './lib/omg_pull_request'
 require './test/mocks/pull_request'
+require './test/mocks/git_client'
 
 
 OmgPullRequest::TestLogger.class_eval do

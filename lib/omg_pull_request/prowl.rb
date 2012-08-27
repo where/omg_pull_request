@@ -46,12 +46,12 @@ module OmgPullRequest
     end
 
     def author_keys
-      author_logins = runner.github_wrapper.author_logins(pull_request)
+      author_logins = github_wrapper.author_logins(runner.pull_request)
       keys_for_users(author_logins)
     end
 
     def all_keys
-      logins = self.github_wrapper.all_logins(runner.pull_request) + 
+      logins = github_wrapper.all_logins(runner.pull_request) + 
         runner.git_client.committers(runner.from_sha, runner.to_sha) 
 
       keys_for_users(logins)
