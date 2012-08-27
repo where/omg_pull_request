@@ -38,7 +38,6 @@ module OmgPullRequest
       github_client.pull_requests.list(repo_owner, repo)
     end
 
-    # TODO: test
     def make_gist(data, file_name)
       gist = github_client.gists.create(
         'description' => 'Omg!  Pull Request!',

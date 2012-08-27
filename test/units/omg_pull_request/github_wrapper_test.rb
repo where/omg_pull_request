@@ -33,6 +33,12 @@ module OmgPullRequest
       assert_equal "Omg", pr.title 
     end
 
+    def test_make_gist
+      fakeweb_make_gist
+      expected_url = "https://gist.github.com/raw/365370/8c4d2d43d178df44f4c03a7f2ac0ff512853564e/file_name"
+      assert_equal expected_url, github_wrapper.make_gist("omg", "file_name")
+    end
+
     protected
 
     def github_wrapper

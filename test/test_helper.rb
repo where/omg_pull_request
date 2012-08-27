@@ -51,3 +51,9 @@ def fakeweb_pull_requests
     "https://omg:pull_request@api.github.com/repos/kenmazaika/pictures/pulls",
     :response => File.expand_path('test/fixtures/pull_requests'))
 end
+
+def fakeweb_make_gist
+  FakeWeb.register_uri(:post,
+    "https://omg:pull_request@api.github.com/gists",
+    :response => File.expand_path('test/fixtures/make_gist'))
+end
