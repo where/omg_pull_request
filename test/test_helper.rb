@@ -21,3 +21,28 @@ def fakeweb_get_pull_request_commits
     "https://omg:pull_request@api.github.com/repos/kenmazaika/pictures/pulls/10/commits",
     :response => File.expand_path('test/fixtures/github_commits'))
 end
+
+
+def fakeweb_kenmazaika
+  FakeWeb.register_uri(:get,
+    "https://omg:pull_request@api.github.com/users/kenmazaika",
+    :response => File.expand_path('test/fixtures/kenmazaika'))
+end
+
+def fakeweb_comments
+  FakeWeb.register_uri(:get,
+    "https://omg:pull_request@api.github.com/repos/kenmazaika/pictures/issues/10/comments",
+    :response => File.expand_path('test/fixtures/comments'))
+end
+
+def fakeweb_create_comment
+  FakeWeb.register_uri(:post,
+    "https://omg:pull_request@api.github.com/repos/kenmazaika/pictures/issues/10/comments",
+    :response => File.expand_path('test/fixtures/create_comment'))
+end
+
+def fakeweb_pull_requests
+  FakeWeb.register_uri(:get,
+    "https://omg:pull_request@api.github.com/repos/kenmazaika/pictures/pulls",
+    :response => File.expand_path('test/fixtures/pull_requests'))
+end

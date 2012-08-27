@@ -17,9 +17,7 @@ module OmgPullRequest
     end
 
     def test_alert_author
-      FakeWeb.register_uri(:get,
-        "https://omg:pull_request@api.github.com/users/kenmazaika",
-        :response => File.expand_path('test/fixtures/kenmazaika'))
+      fakeweb_kenmazaika
 
       prowl_client.expects(:notify_users).with(
         'omg', ['OMG_OMG'], 
@@ -30,9 +28,7 @@ module OmgPullRequest
     end
 
     def test_alert_all_relevant_people
-      FakeWeb.register_uri(:get,
-        "https://omg:pull_request@api.github.com/repos/kenmazaika/pictures/issues/10/comments",
-        :response => File.expand_path('test/fixtures/comments'))
+      fakeweb_comments
 
       prowl_client.expects(:notify_users).with(
         'omg', ['OMG_OMG', "REG_DUDE"], 
