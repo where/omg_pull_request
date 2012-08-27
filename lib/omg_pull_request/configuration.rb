@@ -1,12 +1,15 @@
 module OmgPullRequest
   class Configuration
-    attr_reader   :config
+    attr_accessor   :config
 
     def initialize(attributes={})
       attributes.each do |attr, value|
         self.send("#{attr}=", value)
       end
-      @config = YAML.load(File.open(self.config_file))
+
+      if File.exists?(self.config_file)
+        @config = YAML.load(File.open(self.config_file))
+      end
     end
 
 

@@ -13,11 +13,11 @@ module OmgPullRequest
     end
 
     def checkout!(sha)
-      logger.log `cd #{local_repo} && git reset --hard && git fetch && git checkout #{sha}`
+      logger.log `cd #{local_repo} && git reset --hard && git fetch && git checkout #{sha} 2>&1`
     end
 
     def merge!(sha)
-      merge_response = `cd #{local_repo} && git merge #{sha}`
+      merge_response = `cd #{local_repo} && git merge #{sha} 2>&1`
       self.logger.log merge_response
       merge_response.match(/CONFLICT/) ? :conflict : :success
     end

@@ -38,6 +38,21 @@ module OmgPullRequest
       github_client.pull_requests.list(repo_owner, repo)
     end
 
+    # TODO: test
+    def make_gist(data, file_name)
+      gist = github_client.gists.create(
+        'description' => 'Omg!  Pull Request!',
+        'public' => false,
+        'files' => {
+          file_name => {
+            'content' => data
+          }
+        }
+      )
+
+      gist.files[file_name].raw_url
+    end
+
     private
 
     extend Configuration::Helpers

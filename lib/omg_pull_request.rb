@@ -10,6 +10,7 @@ require 'i18n'
 require 'omg_pull_request/configuration'
 require 'omg_pull_request/test_logger'
 require 'omg_pull_request/aws/store'
+require 'omg_pull_request/storage/gist'
 require 'omg_pull_request/github_wrapper'
 require 'omg_pull_request/notifications'
 require 'omg_pull_request/test_runner'
@@ -24,9 +25,11 @@ require 'omg_pull_request/version'
 
 module OmgPullRequest
   CONFIGURATION     = Configuration.new
-  STORE             = Aws::Store.new(:storage_config => CONFIGURATION.aws.symbolize_keys)
   CONTEXT           = Context.new
   GITHUB_WRAPPER    = GithubWrapper.new(:configuration => CONFIGURATION)
+
+  STORE             = Storage::Gist.new(:configuration => CONFIGURATION,
+    :github_wrapper => GITHUB_WRAPPER)
 end
 
 
