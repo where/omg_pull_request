@@ -54,7 +54,7 @@ module OmgPullRequest
 
     def test_make_comment_failure
       mock_runner.expects(:github_comment).with(
-        ":thumbsdown: :fire: :broken_heart: \n### Tests Failed \n `abbr_from_sha` to `\#{abbr_to_sha}`\nTests too 1 minutes, 3.45 seconds.\n[results](url)"
+        ":thumbsdown: :fire: :broken_heart: \n### Tests Failed \n `abbr_from_sha` to `abbr_to_sha`\nTests too 1 minutes, 3.45 seconds.\n[results](url)"
       )
       mock_runner.send(:make_comment_failure!, "url")
     end
