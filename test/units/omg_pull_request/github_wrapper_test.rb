@@ -2,7 +2,7 @@ require './test/test_helper.rb'
 
 module OmgPullRequest
   class GithubWrapperTest < MiniTest::Unit::TestCase
-    def test_flunk
+    def test_author_logins
       fakeweb_kenmazaika
       logins = github_wrapper.author_logins(MockPullRequest.new)
       assert_equal ["kenmazaika", "kenmazaika@gmail.com"], logins
