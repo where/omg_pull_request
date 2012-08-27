@@ -60,3 +60,7 @@ This is a sample config, with sensitive data scrubbed for running tests on the r
 6. On a server someplace clone the repo.  This cloned repo will be managed by the daemon, and the tests will run on it from now on.
 7. In a screen session run `omg_pull_request`.
 8. Enjoy.
+
+### Example
+
+You can see an example of a successful pull request that has been `omg_pull_request`ified here: https://github.com/where/omg_pull_request/pull/1.
