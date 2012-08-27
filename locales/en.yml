@@ -16,7 +16,7 @@ Issue Number: %{issue_number}"
   completed:
     github:
       success: ":thumbsup: :shipit: \n### Tests Passed  \nFrom `%{abbr_from_sha}` to `%{abbr_to_sha}`\nTests took %{minutes} minutes, %{seconds} seconds.\n[results](%{output_file})"
-      failure: ":thumbsdown: :fire: :broken_heart: \n### Tests Failed \n `%{abbr_from_sha}` to `#{abbr_to_sha}`\nTests too %{minutes} minutes, %{seconds} seconds.\n[results](%{output_file})"
+      failure: ":thumbsdown: :fire: :broken_heart: \n### Tests Failed \n `%{abbr_from_sha}` to `%{abbr_to_sha}`\nTests too %{minutes} minutes, %{seconds} seconds.\n[results](%{output_file})"
     prowl:
       success: "Thumbs up, bro.\nPull request #%{issue_number}\n%{title}\nTests took %{minutes} minutes, %{seconds} seconds."
       failure: "Sad face to the max, homie.\nPull request #%{issue_number}\n%{title}\nTests took %{minutes} minutes, %{seconds} seconds."
