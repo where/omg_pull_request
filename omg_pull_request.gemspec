@@ -14,4 +14,13 @@ Gem::Specification.new do |gem|
   gem.name          = "omg_pull_request"
   gem.require_paths = ["lib"]
   gem.version       = OmgPullRequest::VERSION
+
+  gem.add_runtime_dependency(%q<aws-s3>)
+  gem.add_runtime_dependency(%q<faraday>)
+  gem.add_runtime_dependency(%q<github_api>)
+  gem.add_runtime_dependency(%q<uuid>)
+  gem.add_runtime_dependency(%q<rake>)
+  gem.add_runtime_dependency(%q<activesupport>)
+  gem.add_runtime_dependency(%q<i18n>)
+
 end

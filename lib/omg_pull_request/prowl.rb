@@ -20,7 +20,6 @@ module OmgPullRequest
         :description => msg
       }.merge( options )
 
-      puts "Notifying: #{keys.join(', ')}"
       keys.each do |key|
         open_connection.post PROWL_PATH, opts.merge(:apikey => key)
       end
