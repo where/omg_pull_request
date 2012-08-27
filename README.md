@@ -27,11 +27,11 @@ On running the test suite an animated gif can be generated of the lolcommits tha
 
 ## Installation
 
-1. In a rails project, add `omg_pull_request` to the Gemfile.
-2. Make an `omg_pull_request` directory in the project's `test` directory.
-3. Add a `database.yml` file in the `omg_pull_request` dir.  This will drop databases, so it is suggested this points to different databases than the main `config/database.yml` file
-4. Create a github user to run the tests as.  This user will need to have access to the repo the test is run on.  It can be your developer account, or a new account specifically for this.
-5. Add a `config.yml` file in the `omg_pull_request` dir.  It follows this template:
+* In a rails project, add `omg_pull_request` to the Gemfile.
+* Make an `omg_pull_request` directory in the project's `test` directory.
+* Add a `database.yml` file in the `omg_pull_request` dir.  This will drop databases, so it is suggested this points to different databases than the main `config/database.yml` file
+* Create a github user to run the tests as.  This user will need to have access to the repo the test is run on.  It can be your developer account, or a new account specifically for this.
+* Add a `config.yml` file in the `omg_pull_request` dir.  It follows this template:
 
 ```
 repo_owner: kenmazaika
@@ -57,9 +57,9 @@ prowl:
 
 This is a sample config, with sensitive data scrubbed for running tests on the repo: https://github.com/kenmazaika/pictures.  One important note is for the prowl integration it should contain a key for both the github user_name and the email address that can be pulled from git.
 
-6. On a server someplace clone the repo.  This cloned repo will be managed by the daemon, and the tests will run on it from now on.
-7. In a screen session run `omg_pull_request`.
-8. Enjoy.
+* On a server someplace clone the repo.  This cloned repo will be managed by the daemon, and the tests will run on it from now on.
+* In a screen session run `omg_pull_request`.
+* Enjoy.
 
 ### Example
 
