@@ -7,6 +7,11 @@ require './lib/omg_pull_request'
 require './test/mocks/pull_request'
 require './test/mocks/git_client'
 
+locale_dir = File.expand_path("../../locales", __FILE__)
+I18n.load_path = [
+  File.join(locale_dir, "omg.yml"),
+  File.join(locale_dir, "en.yml")
+]
 
 OmgPullRequest::TestLogger.class_eval do
   def log(output)

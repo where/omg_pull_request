@@ -19,6 +19,10 @@ class MockPullRequest
     MockSha.new("BASE_SHA")
   end
 
+  def title
+    "Omg"
+  end
+
   class MockUser
     def login
       "kenmazaika"

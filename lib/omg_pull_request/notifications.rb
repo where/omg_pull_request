@@ -7,7 +7,7 @@ module OmgPullRequest
     end
 
     def make_comment_failure!(output_file)
-      github_comment(t("completed.github.failure"), runner_hash(:output_file => output_file))
+      github_comment(t("completed.github.failure", runner_hash(:output_file => output_file)))
     end
 
     def make_comment_conflict!
