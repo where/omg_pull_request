@@ -1,14 +1,14 @@
 require 'minitest/autorun'
 require 'fakeweb'
-# TODO: make a specific test one, instead of using this file
-ENV['yml'] = './testing.yml'
+
+ENV['yml'] = File.join(File.expand_path("..", __FILE__), "fixtures/config.yml")
 require './lib/omg_pull_request'
 
-OmgPullRequest::LOGGER.instance_eval do
+
+OmgPullRequest::TestLogger.class_eval do
   def log(output)
     # NOOP on logging
   end
 end
-
 
 FakeWeb.allow_net_connect = false

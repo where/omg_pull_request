@@ -6,7 +6,6 @@ module OmgPullRequest
       attributes.each do |attr, value|
         self.send("#{attr}=", value)
       end
-      self.config_file ||= 'campaign_manager.yml'
       @config = YAML.load(File.open(self.config_file))
     end
 

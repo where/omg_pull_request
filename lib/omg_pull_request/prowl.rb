@@ -64,13 +64,14 @@ module OmgPullRequest
       end
     end
 
+    extend Configuration::Helpers
+    delegate_config_to(:configuration, :prowl)
+
     [:application, :keys].each do |attr|
       define_method "prowl_#{attr}" do
         (prowl || Hash.new)[attr.to_s]
       end
     end
 
-    extend Configuration::Helpers
-    delegate_config_to(:configuration, :prowl)
   end
 end

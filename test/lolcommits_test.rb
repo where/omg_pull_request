@@ -5,15 +5,15 @@ class LolcommitsTest < MiniTest::Unit::TestCase
     shas = ['lol', 'rofl']
     url = "http://lolcommits.com/omg"
 
-    FakeWeb.register_uri(:post, "#{Lolcommits::LOLCOMMITS_URL}#{Lolcommits::LOLCOMMITS_PATH}", :body => {:image => {:url => url} }.to_json)
+    FakeWeb.register_uri(:post, "#{OmgPullRequest::Lolcommits::LOLCOMMITS_URL}#{OmgPullRequest::Lolcommits::LOLCOMMITS_PATH}", :body => {:image => {:url => url} }.to_json)
     
-    assert_equal url, lolcommits_client.get_animation_url(shas)
+    assert_equal url, lolcommits_client.send(:get_animation_url, shas)
   end
 
   private
 
   def lolcommits_client
-    @lolcommits_client ||= Lolcommits.new
+    @lolcommits_client ||= OmgPullRequest::Lolcommits.new
   end
 end
 

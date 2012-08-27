@@ -1,0 +1,19 @@
+repo_owner: kenmazaika
+repo: pictures
+locale: en
+runner: Rails 
+
+github_credentials:
+  login: omg
+  password: pull_request
+
+aws:
+  access_token: ACCESS_TOKEN_HERE
+  secret_token: SECRET_TOKEN_HERE
+  bucket: BUCKET_HERE
+
+prowl:
+  application: OMG_PULL_REQUEST
+  keys:
+    kenmazaika: OMG_OMG
+    kenmazaika@gmail.com: OMG_OMG
