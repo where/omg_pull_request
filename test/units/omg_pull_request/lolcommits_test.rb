@@ -6,6 +6,10 @@ module OmgPullRequest
       fakeweb_get_pull_request_commits
     end
 
+    def test_flunk
+      flunk
+    end
+
     def test_get_animation_url_success
       shas = ['lol', 'rofl']
 
