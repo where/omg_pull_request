@@ -44,3 +44,4 @@ config/initializers/error_mass_assign.rb
 config/initializers/activeresource_debug.rb
 tags
 .rbenv-version
+test/omg_pull_request/config.yml
