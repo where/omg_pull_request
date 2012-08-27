@@ -12,9 +12,9 @@ module OmgPullRequest
 
     def animation_url
       return @animation_url if @animation_url
-      commits = GITHUB_WRAPPER.commit_shas(runner.pull_request) - 
-        CONTEXT.get_animated_shas(runner.pull_request.number)
-      CONTEXT.add_animated_shas(runner.pull_request.number, commits)
+      commits = github_wrapper.commit_shas(runner.pull_request) - 
+        context.get_animated_shas(runner.pull_request.number)
+      context.add_animated_shas(runner.pull_request.number, commits)
 
       @animation_url ||= get_animation_url(commits)
     end
@@ -22,7 +22,7 @@ module OmgPullRequest
     protected
 
     def get_animation_url(shas)
-      if shas.any?
+      unless shas.blank?
         response = lolcommits_connection.post LOLCOMMITS_PATH, :animated_gif => { :shas => shas.join(',') }
         JSON.parse(response.body).fetch("image").fetch("url") if response.status == 200
       end
