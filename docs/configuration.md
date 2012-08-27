@@ -78,6 +78,28 @@ runner: Rails
 
 This has the basic execution path that should work for non rails ruby projects.  This will be valid for most gems, and ruby libraries.  The implementation is to simply run rake.  The full implementation can be seen: lib/omg_pull_request/test_runner/ruby.rb.
 
+Example:
+
+```
+runner: Ruby
+```
+
+#### RailsTestFast
+
+RailsTestFast uses the `parallel_tests` gem to allow running the tests in parallel for as many cores as the machine that is running the tests has.  If it's being run on a box with many cores, it can greatly improve the speed of the tests.
+
+For this mode to work, your project must be ready to run with parallel_tests first.  This requires some modification to the database.yml file, and fixing any concurrency bugs that exist in your codebase.
+
+There are a number of helper rake tasks that need to be included.  You can see details about how to set that up: in this gist.
+
+Assuming that's up and running, you should be able to run faster rails tests.
+
+Example:
+
+```
+runner: RailsTestFast
+```
+
 ### Prowl Notifications
 
 Prowl is a service that integrates with most modern smart phones to push alerts to.  This can allow a smart phone to be alerted when the tests pass or fail.

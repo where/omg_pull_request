@@ -76,3 +76,4 @@ You can see an example of a successful pull request that has been `omg_pull_requ
 * Jean-Charles Sisk
 * Master William Desmarais
 * Ian Asaff
+* Jack Thorne
