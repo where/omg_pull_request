@@ -15,12 +15,12 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = OmgPullRequest::VERSION
 
-  gem.add_runtime_dependency(%q<aws-s3>)
-  gem.add_runtime_dependency(%q<faraday>)
-  gem.add_runtime_dependency(%q<github_api>)
-  gem.add_runtime_dependency(%q<uuid>)
-  gem.add_runtime_dependency(%q<rake>)
-  gem.add_runtime_dependency(%q<activesupport>)
-  gem.add_runtime_dependency(%q<i18n>)
+  gem.add_runtime_dependency(%q<aws-s3>, ">= 0.6.3")
+  gem.add_runtime_dependency(%q<faraday>, ">= 0.8.4")
+  gem.add_runtime_dependency(%q<github_api>, ">= 0.6.5")
+  gem.add_runtime_dependency(%q<uuid>, ">= 2.3.5")
+  gem.add_runtime_dependency(%q<rake>, ">= 0.9.2.2")
+  gem.add_runtime_dependency(%q<activesupport>, ">= 3.2.8")
+  gem.add_runtime_dependency(%q<i18n>, ">= 0.6.0")
 
 end
