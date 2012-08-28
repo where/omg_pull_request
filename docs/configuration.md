@@ -90,7 +90,7 @@ RailsTestFast uses the `parallel_tests` gem to allow running the tests in parall
 
 For this mode to work, your project must be ready to run with parallel_tests first.  This requires some modification to the database.yml file, and fixing any concurrency bugs that exist in your codebase.
 
-There are a number of helper rake tasks that need to be included.  You can see details about how to set that up: in this gist.
+There are a number of helper rake tasks that need to be included.  You can see details about how to set that up: [in this gist](https://gist.github.com/3494240).
 
 Assuming that's up and running, you should be able to run faster rails tests.
 
