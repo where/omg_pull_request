@@ -18,18 +18,18 @@ class RunnerTest < MiniTest::Unit::TestCase
   end
 
   def setup
-    if Dir.exists?("#{stage_dir}/omg")
-      `cd #{stage_dir} && git fetch > /dev/null 2>&1`
-    else
-      `cd #{stage_dir} && git clone https://github.com/#{config[:login]}/omg.git`
-    end
-
-    repo = github.repos.get(config[:login], "omg") rescue nil
+   repo = github.repos.get(config[:login], "omg") rescue nil
 
     unless repo
       github.repos.forks.create('wherebot', 'omg')
       sleep(10)
       repo = github.repos.get(config[:login], "omg") 
+    end
+
+    if Dir.exists?("#{stage_dir}/omg")
+      `cd #{stage_dir} && git fetch > /dev/null 2>&1`
+    else
+      `cd #{stage_dir} && git clone https://github.com/#{config[:login]}/omg.git`
     end
 
     prs = github.pull_requests.list(config[:login], "omg")
@@ -63,8 +63,51 @@ class RunnerTest < MiniTest::Unit::TestCase
     assert pass['body'].match(/Tests Passed/)
   end
 
-  # TODO: fail test
-  # TODO: conflict test
+  def test_failure
+    github.pull_requests.create config[:login], 'omg',
+        "head" => "#{config[:login]}:failure",
+        "base" => "master",
+        "title" => 'Failure'
+    
+    prs = github.pull_requests.list(config[:login], "omg")
+    assert_equal 1, prs.count
+    pr = prs.first
+
+    runner = build_runner(pr)
+    
+    runner.run
+
+    posts = github.issues.comments.list(config[:login], 'omg', pr.number)
+    assert_equal 2, posts.count
+    running = posts.first
+    pass = posts.last
+
+    assert running['body'].match(/Running tests/)
+    assert pass['body'].match(/Tests Fail/)
+  end
+
+  def test_conflict
+    github.pull_requests.create config[:login], 'omg',
+        "head" => "#{config[:login]}:conflict",
+        "base" => "master",
+        "title" => 'Conflict'
+    
+    prs = github.pull_requests.list(config[:login], "omg")
+    assert_equal 1, prs.count
+    pr = prs.first
+
+    runner = build_runner(pr)
+    
+    runner.run
+
+    posts = github.issues.comments.list(config[:login], 'omg', pr.number)
+    assert_equal 2, posts.count
+    running = posts.first
+    conflict = posts.last
+
+    assert running['body'].match(/Running tests/)
+    assert conflict['body'].match(/conflict/)
+  end
 
   protected
 

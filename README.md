@@ -70,6 +70,19 @@ A detailed specification of the available configuration options can be found in 
 
 You can see an example of a successful pull request that has been `omg_pull_request`ified here: https://github.com/where/omg_pull_request/pull/1.  And an example of a failed pull request that has been `omg_pull_request`ified here: https://github.com/where/omg_pull_request/pull/2.
 
+### Future Features
+
+Got an idea for a future feature?  Know of a cool service that you think omg_pull_request integration with would be nice?  Open up a github issue.
+
+#### Current Thoughts
+
+* Twilio Integration would be a cool feature.  Getting a text message when tests pass would be nice.
+* Monitoring the pull requests and sending the author a notification when the pull request has been closed (either merged, or just closed) would be useful.
+
+#### Running Integration Tests
+
+Integration Tests call the github api, and verify the full flow works.  Before you run, you'll need to authenticate with a github profile that the tests can run on.  To do this run `rake test:setup`.
+
 ### Contributors
 
 * Ken Mazaika
