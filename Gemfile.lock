@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    omg_pull_request (0.0.7)
-      activesupport (>= 3.2.8)
+    omg_pull_request (0.1.0)
+      activesupport (>= 3.2.6)
       aws-s3 (>= 0.6.3)
       faraday (>= 0.8.4)
       github_api (>= 0.6.5)
