@@ -21,7 +21,7 @@ module OmgPullRequest
     end
 
     def local_repo
-      @local_repo ||= (self.config['local_repo'] || Dir.pwd)
+      @local_repo ||= ((self.config || Hash.new)['local_repo'] || Dir.pwd)
     end
 
     def database_yml
