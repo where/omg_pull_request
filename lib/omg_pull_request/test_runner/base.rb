@@ -1,7 +1,7 @@
 module OmgPullRequest
   module TestRunner
     class Base
-      attr_accessor :success, :runtime, :pull_request, :configuration
+      attr_accessor :success, :runtime, :pull_request, :configuration, :github_wrapper, :store
       include Notifications
 
       def initialize(attributes={})
@@ -27,7 +27,7 @@ module OmgPullRequest
           return
         end
 
-        Bundler.with_original_env do
+        Bundler.with_clean_env do
           setup
 
           t = Time.now
@@ -77,23 +77,23 @@ module OmgPullRequest
       end
 
       def logger
-        @logger ||= TestLogger.new(:store => STORE)
+        @logger ||= TestLogger.new(:store => self.store)
       end
 
       def prowl_client
-        @prowl_client ||= Prowl.new(:configuration => CONFIGURATION, :logger => logger, :runner => self, :github_wrapper => GITHUB_WRAPPER)
+        @prowl_client ||= Prowl.new(:configuration => self.configuration, :logger => logger, :runner => self, :github_wrapper => self.github_wrapper)
       end
 
       def lolcommits_client
-        @lolcommits ||= Lolcommits.new(:configuration => CONFIGURATION, :github_wrapper => GITHUB_WRAPPER, :runner => self, :context => CONTEXT)
+        @lolcommits ||= Lolcommits.new(:configuration => self.configuration, :github_wrapper => self.github_wrapper, :runner => self, :context => CONTEXT)
       end
 
       def git_client
-        @git_client ||= GitClient.new(:logger => logger, :configuration => CONFIGURATION)
+        @git_client ||= GitClient.new(:logger => logger, :configuration => self.configuration)
       end
 
       def notifier
-        @notifier ||= Notifier.new(:runner => self, :github_wrapper => GITHUB_WRAPPER)
+        @notifier ||= Notifier.new(:runner => self, :github_wrapper => self.configuration)
       end
 
       def log(message)

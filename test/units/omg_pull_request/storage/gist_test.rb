@@ -12,8 +12,8 @@ module OmgPullRequest
 
       def storage
         @store ||= Gist.new(
-          :configuration => Configuration.new,
-          :github_wrapper => GITHUB_WRAPPER
+          :configuration => MOCK_CONFIGURATION,
+          :github_wrapper => MOCK_GITHUB_WRAPPER
         )
       end
     end

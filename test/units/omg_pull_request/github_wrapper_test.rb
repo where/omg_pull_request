@@ -42,7 +42,7 @@ module OmgPullRequest
     protected
 
     def github_wrapper
-      @github_wrapper ||= GithubWrapper.new(:configuration => CONFIGURATION)
+      @github_wrapper ||= GithubWrapper.new(:configuration => MOCK_CONFIGURATION)
     end
   end
 

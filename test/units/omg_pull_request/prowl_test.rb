@@ -43,9 +43,9 @@ module OmgPullRequest
     def prowl_client
       runner = TestRunner::Base.new(:pull_request => MockPullRequest.new)
       runner.expects(:git_client).returns(MockGitClient.new).at_least(0)
-      @prowl_client ||= OmgPullRequest::Prowl.new(:configuration => CONFIGURATION,
+      @prowl_client ||= OmgPullRequest::Prowl.new(:configuration => MOCK_CONFIGURATION,
         :runner => runner,
-        :github_wrapper => GITHUB_WRAPPER)
+        :github_wrapper => MOCK_GITHUB_WRAPPER)
     end
   end
 end

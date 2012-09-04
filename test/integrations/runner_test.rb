@@ -130,11 +130,21 @@ class RunnerTest < MiniTest::Unit::TestCase
             }
         }
     }
+    config = OmgPullRequest::Configuration.new(:config => configuration)
 
-    OmgPullRequest::CONFIGURATION.config = configuration
+    github_wrapper = OmgPullRequest::GithubWrapper.new(
+      :configuration => config
+    )
+    store = config.storage_class.new(
+      :configuration  => config,
+      :github_wrapper => github_wrapper
+    )
+
     OmgPullRequest::TestRunner::Rails.new(
-      :configuration => OmgPullRequest::CONFIGURATION,
-      :pull_request  => pull_request
+      :github_wrapper => github_wrapper,
+      :configuration  => config,
+      :pull_request   => pull_request,
+      :store          => store
     )
   end
 

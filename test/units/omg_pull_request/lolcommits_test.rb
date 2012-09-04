@@ -35,7 +35,7 @@ module OmgPullRequest
     end
 
     def lolcommits_client
-      @lolcommits_client ||= Lolcommits.new(:context => CONTEXT, :github_wrapper => GITHUB_WRAPPER,
+      @lolcommits_client ||= Lolcommits.new(:context => CONTEXT, :github_wrapper => MOCK_GITHUB_WRAPPER,
         :runner => TestRunner::Base.new(:pull_request => MockPullRequest.new))
     end
   end

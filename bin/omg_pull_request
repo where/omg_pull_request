@@ -3,11 +3,5 @@
 require 'omg_pull_request'
 
 include OmgPullRequest
-locale_dir = File.expand_path("../../locales", __FILE__)
-I18n.load_path = [
-  File.join(locale_dir, "omg.yml"),
-  File.join(locale_dir, "en.yml")
-]
-I18n.locale = CONFIGURATION.locale if CONFIGURATION.locale
 
 TestRunner.start_daemon

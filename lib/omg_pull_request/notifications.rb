@@ -46,7 +46,7 @@ module OmgPullRequest
     end
 
     def github_comment(message)
-      GITHUB_WRAPPER.make_comment(self.issue_number, message)
+      self.github_wrapper.make_comment(self.issue_number, message)
     end
 
     def runner_hash(also=Hash.new)

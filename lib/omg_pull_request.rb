@@ -25,12 +25,5 @@ require 'omg_pull_request/lolcommits'
 require 'omg_pull_request/version'
 
 module OmgPullRequest
-  CONFIGURATION     = Configuration.new
-  CONTEXT           = Context.new
-  GITHUB_WRAPPER    = GithubWrapper.new(:configuration => CONFIGURATION)
-
-  STORE             = CONFIGURATION.storage_class.new(:configuration => CONFIGURATION,
-    :github_wrapper => GITHUB_WRAPPER)
+  CONTEXT = Context.new
 end
-
-

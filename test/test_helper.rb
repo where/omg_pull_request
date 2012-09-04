@@ -21,6 +21,16 @@ end
 
 FakeWeb.allow_net_connect = false
 
+MOCK_CONFIGURATION  = OmgPullRequest::Configuration.new
+MOCK_GITHUB_WRAPPER = OmgPullRequest::GithubWrapper.new(
+  :configuration => MOCK_CONFIGURATION
+)
+
+MOCK_STORE = MOCK_CONFIGURATION.storage_class.new(
+  :configuration  => MOCK_CONFIGURATION,
+  :github_wrapper => MOCK_GITHUB_WRAPPER
+)
+
 def fakeweb_get_pull_request_commits
   FakeWeb.register_uri(:get,
     "https://omg:pull_request@api.github.com/repos/kenmazaika/pictures/pulls/10/commits",

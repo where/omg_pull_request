@@ -1,13 +1,13 @@
 module OmgPullRequest
   class Configuration
-    attr_accessor   :config
+    attr_accessor :config, :local_repo
 
     def initialize(attributes={})
       attributes.each do |attr, value|
         self.send("#{attr}=", value)
       end
 
-      if File.exists?(self.config_file)
+      if config.blank? && File.exists?(self.config_file)
         @config = YAML.load(File.open(self.config_file))
       end
     end
@@ -21,7 +21,7 @@ module OmgPullRequest
     end
 
     def local_repo
-      self.config['local_repo'] || Dir.pwd
+      @local_repo ||= (self.config['local_repo'] || Dir.pwd)
     end
 
     def database_yml
@@ -38,7 +38,7 @@ module OmgPullRequest
     end
 
     def omg_dir
-      File.join(Dir.pwd, 'test/omg_pull_request')
+      File.join(local_repo, 'test/omg_pull_request')
     end
 
     def runner_class
@@ -47,6 +47,13 @@ module OmgPullRequest
 
     def storage_class
       "OmgPullRequest::Storage::#{(config['storage'] || Hash.new)['provider'] || 'Gist'}".constantize
+    end
+
+    def initialize_localization!
+      return if @initialized
+
+      I18n.locale = self.locale if self.locale
+      @initialized = true
     end
 
     module Helpers

@@ -77,6 +77,10 @@ module OmgPullRequest
   class MockRunner
     include Notifications
 
+    def github_wrapper
+      MOCK_GITHUB_WRAPPER
+    end
+
     def abbr_from_sha
       "abbr_from_sha"
     end
