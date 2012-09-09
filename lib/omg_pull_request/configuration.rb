@@ -49,13 +49,6 @@ module OmgPullRequest
       "OmgPullRequest::Storage::#{(config['storage'] || Hash.new)['provider'] || 'Gist'}".constantize
     end
 
-    def initialize_localization!
-      return if @initialized
-
-      I18n.locale = self.locale if self.locale
-      @initialized = true
-    end
-
     module Helpers
       def delegate_config_to(config, *attrs)
         attrs.each do |attr|

@@ -2,7 +2,6 @@ module OmgPullRequest
   module TestRunner
 
     def self.start_daemon(configuration=Configuration.new, daemonize=true)
-      configuration.initialize_localization!
       github_wrapper    = GithubWrapper.new(
         :configuration => configuration
       )
