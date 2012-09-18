@@ -13,7 +13,7 @@ module OmgPullRequest
     end
 
     def checkout!(sha)
-      logger.log `cd #{local_repo} && git reset --hard && git fetch && git checkout #{sha} 2>&1`
+      execute_verify_success "cd #{local_repo} && git reset --hard && git fetch && git checkout #{sha} 2>&1"
     end
 
     def merge!(sha)
@@ -22,8 +22,16 @@ module OmgPullRequest
       merge_response.match(/CONFLICT/) ? :conflict : :success
     end
 
-
     private
+
+    def execute_verify_success(command)
+      result = `#{command}`
+      logger.log(command) 
+      logger.log(result)
+      exit_code = $?.to_i
+      raise "Not a successful response code: #{exit_code}" unless exit_code.zero?
+      result
+    end
 
     extend Configuration::Helpers
     delegate_config_to(:configuration, :local_repo)

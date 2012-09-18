@@ -11,7 +11,7 @@ Issue Number: %{issue_number}"
     github:
       message: ":trollface: Running tests: `%{abbr_from_sha}` to `%{abbr_to_sha}`"
       lolcommits:
-        message: ":trollface: Running tests: `%{abbr_from_sha}` to `%{abbr_to_sha}\n\nThis is what hard work looks like\n![Pretty Pictures](%{animation_url})"
+        message: ":trollface: Running tests: `%{abbr_from_sha}` to `%{abbr_to_sha}`\n\nThis is what hard work looks like\n![Pretty Pictures](%{animation_url})"
 
   completed:
     github:

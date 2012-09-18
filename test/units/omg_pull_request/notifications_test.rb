@@ -39,7 +39,7 @@ module OmgPullRequest
 
     def test_make_comment_test_running
       mock_runner.expects(:github_comment).with(
-        ":trollface: Running tests: `abbr_from_sha` to `abbr_to_sha\n\nThis is what hard work looks like\n![Pretty Pictures](http://lolcommits.com/omg)"
+        ":trollface: Running tests: `abbr_from_sha` to `abbr_to_sha`\n\nThis is what hard work looks like\n![Pretty Pictures](http://lolcommits.com/omg)"
       )
       mock_runner.send(:make_comment_test_running!)
     end
