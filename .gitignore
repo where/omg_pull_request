@@ -31,6 +31,9 @@
 *.swn
 *.swm
 
+# No Gemfile.lock since this is a gem
+Gemfile.lock
+
 test/functional/coverage/**
 test/unit/coverage/**
 test/functional/advertisers/coverage/**
