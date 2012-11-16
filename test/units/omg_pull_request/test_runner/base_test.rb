@@ -28,9 +28,11 @@ module OmgPullRequest
       def test_run_success
         runner.expects(:log_test_details!).once
         runner.expects(:make_comment_test_running!).once
+        runner.expects(:make_status_test_running!).once
         runner.git_client.expects(:checkout!).once
         runner.git_client.expects(:merge!).once.returns(:success)
         runner.expects(:make_comment_conflict!).never
+        runner.expects(:make_status_conflict!).never
         runner.expects(:process_output!).once
 
         runner.run
@@ -39,9 +41,11 @@ module OmgPullRequest
       def test_run_conflict
         runner.expects(:log_test_details!).once
         runner.expects(:make_comment_test_running!).once
+        runner.expects(:make_status_test_running!).once
         runner.git_client.expects(:checkout!).once
         runner.git_client.expects(:merge!).once.returns(:conflict)
         runner.expects(:make_comment_conflict!).once
+        runner.expects(:make_status_conflict!).once
         runner.expects(:process_output!).never
 
         runner.run

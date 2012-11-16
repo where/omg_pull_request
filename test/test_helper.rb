@@ -56,6 +56,12 @@ def fakeweb_create_comment
     :response => File.expand_path('test/fixtures/create_comment'))
 end
 
+def fakeweb_create_status
+  FakeWeb.register_uri(:post,
+    "https://omg:pull_request@api.github.com/repos/kenmazaika/pictures/statuses/ad0a65aeecaba3a1a487f7d066bab25209086b8c",
+    :response => File.expand_path('test/fixtures/create_status'))
+end
+
 def fakeweb_pull_requests
   FakeWeb.register_uri(:get,
     "https://omg:pull_request@api.github.com/repos/kenmazaika/pictures/pulls",
