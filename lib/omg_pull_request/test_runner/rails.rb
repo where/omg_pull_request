@@ -3,7 +3,7 @@ module OmgPullRequest
     class Rails < TestRunner::Base
       def setup
         execute!("cd #{local_repo} && cp #{database_yml} config/database.yml && bundle")
-        execute!("cd #{local_repo} && bundle exec rake db:drop:all && rake db:create:all && bundle exec rake db:schema:load")
+        execute!("cd #{local_repo} && bundle exec rake db:drop:all && bundle exec rake db:create:all && bundle exec rake db:schema:load")
       end
 
       def execute_tests
