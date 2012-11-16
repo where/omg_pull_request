@@ -22,6 +22,37 @@ module OmgPullRequest
       github_comment(message)
     end
 
+    #GITHUB STATUS
+    def make_status_success!(output_file)
+      github_status(
+        GithubWrapper::STATUSES[:success],
+        :target_url => output_file,
+        :description => t("completed.github_status.success", runner_hash)
+      )
+    end
+
+    def make_status_failure!(output_file)
+      github_status(
+        GithubWrapper::STATUSES[:failure],
+        :target_url => output_file,
+        :description => t("completed.github_status.failure", runner_hash)
+      )
+    end
+
+    def make_status_conflict!
+      github_status(
+        GithubWrapper::STATUSES[:conflict],
+        :description => t("error.github_status.conflict", runner_hash)
+      )
+    end
+
+    def make_status_test_running!
+      github_status(
+        GithubWrapper::STATUSES[:pending],
+        :description => t("start.github_status.message", runner_hash)
+      )
+    end
+
     # PROWL
     def prowl_alert_success!
       message = t("completed.prowl.success", runner_hash)
@@ -38,15 +69,21 @@ module OmgPullRequest
       output_file = store_logger_data!
       if self.success?
         make_comment_success!(output_file)
+        make_status_success!(output_file)
         prowl_alert_success!
       else
         make_comment_failure!(output_file)
+        make_status_failure!(output_file)
         prowl_alert_failure!
       end
     end
 
     def github_comment(message)
-      self.github_wrapper.make_comment(self.issue_number, message)
+      self.github_wrapper.create_comment(self.issue_number, message)
+    end
+
+    def github_status(status, params={})
+      self.github_wrapper.create_status(self.to_sha, status, params)
     end
 
     def runner_hash(also=Hash.new)

@@ -66,6 +66,41 @@ module OmgPullRequest
       mock_runner.send(:make_comment_success!, "url")
     end
 
+    def test_make_status_success
+      mock_runner.expects(:github_status).with(
+        GithubWrapper::STATUSES[:success],
+        :target_url => "url",
+        :description => "Tests Passed (abbr_from_sha to abbr_to_sha) in 1 minutes, 3.45 seconds."
+      )
+      mock_runner.send(:make_status_success!, "url")
+    end
+
+    def test_make_status_failure
+      mock_runner.expects(:github_status).with(
+        GithubWrapper::STATUSES[:failure],
+        :target_url => "url",
+        :description => "Tests Failed (abbr_from_sha to abbr_to_sha) in 1 minutes, 3.45 seconds."
+
+      )
+      mock_runner.send(:make_status_failure!, "url")
+    end
+
+    def test_make_status_conflict
+      mock_runner.expects(:github_status).with(
+        GithubWrapper::STATUSES[:conflict],
+        :description => "A conflict prevented the test suite from being run."
+      )
+      mock_runner.send(:make_status_conflict!)
+    end
+
+    def test_make_status_test_running
+      mock_runner.expects(:github_status).with(
+        GithubWrapper::STATUSES[:pending],
+        :description => "Running tests abbr_from_sha to abbr_to_sha"
+      )
+      mock_runner.send(:make_status_test_running!)
+    end
+
     protected
 
     def mock_runner

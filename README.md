@@ -29,9 +29,10 @@ On running the test suite an animated gif can be generated of the lolcommits tha
 
 * In a rails project, add `omg_pull_request` to the Gemfile.
 * Make an `omg_pull_request` directory in the project's `test` directory.
-* Add a `database.yml` file in the `omg_pull_request` dir.  This will drop databases, so it is suggested this points to different databases than the main `config/database.yml` file
+* Make an `.omgprrc` directory in the project's `root` directory.
+* Add a `database.yml` file in the `.omgprrc` dir.  This will drop databases, so it is suggested this points to different databases than the main `config/database.yml` file
 * Create a github user to run the tests as.  This user will need to have access to the repo the test is run on.  It can be your developer account, or a new account specifically for this.
-* Add a `config.yml` file in the `omg_pull_request` dir.  It follows this template:
+* Add a `config.yml` file in the `.omgprrc` dir.  It follows this template:
 
 ```
 repo_owner: kenmazaika

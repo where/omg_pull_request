@@ -19,9 +19,20 @@ module OmgPullRequest
       assert_equal expected, github_wrapper.commit_shas(MockPullRequest.new)
     end
 
-    def test_make_comment
+    def test_create_comment
       fakeweb_create_comment
-      github_wrapper.make_comment(MockPullRequest.new.number, "omg")
+      github_wrapper.create_comment(MockPullRequest.new.number, "omg")
+    end
+
+    def test_create_status
+      fakeweb_create_status
+      github_wrapper.create_status(MockPullRequest.new.head.sha, "success")
+    end
+
+    def test_get_statuses
+      fakeweb_get_statuses
+      expected = [ "state" => "success" ]
+      assert_equal expected, github_wrapper.get_statuses(MockPullRequest.new.head.sha)
     end
 
     def test_pull_requests
