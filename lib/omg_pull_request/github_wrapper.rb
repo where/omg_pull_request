@@ -48,10 +48,8 @@ module OmgPullRequest
     end
 
     def get_statuses(sha, params={})
-      github_client.repos.statuses.list(repo_owner, repo, sha, params).collect do |c|
-        c.select do |k,v|
-          ["state", "target_url", "description"].include? k
-        end
+      github_client.repos.statuses.list(repo_owner, repo, sha, params).collect do |h|
+        h.slice("state", "target_url", "description")
       end
     end
 
