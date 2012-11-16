@@ -51,3 +51,4 @@ tags
 test/omg_pull_request/config.yml
 test/integrations/config.yml
 test/integrations/.stage
+.omgprrc
