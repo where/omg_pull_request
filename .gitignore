@@ -31,6 +31,9 @@
 *.swn
 *.swm
 
+# No Gemfile.lock since this is a gem
+Gemfile.lock
+
 test/functional/coverage/**
 test/unit/coverage/**
 test/functional/advertisers/coverage/**
@@ -48,3 +51,4 @@ tags
 test/omg_pull_request/config.yml
 test/integrations/config.yml
 test/integrations/.stage
+.omgprrc

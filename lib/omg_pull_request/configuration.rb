@@ -38,7 +38,7 @@ module OmgPullRequest
     end
 
     def omg_dir
-      File.join(local_repo, 'test/omg_pull_request')
+      File.join(local_repo, '.omgprrc')
     end
 
     def runner_class

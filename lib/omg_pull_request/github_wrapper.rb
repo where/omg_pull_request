@@ -1,6 +1,12 @@
 module OmgPullRequest
   class GithubWrapper
     attr_accessor :configuration
+    STATUSES = {
+      :pending  => "pending",
+      :success  => "success",
+      :conflict => "error",
+      :failure  => "failure"
+    }
 
     def initialize(attributes={})
       attributes.each do |attr, value|
@@ -30,8 +36,21 @@ module OmgPullRequest
       end
     end
 
-    def make_comment(issue_number, body)
+    def create_comment(issue_number, body)
       github_client.issues.comments.create(repo_owner, repo, issue_number, :body => body)
+    end
+
+    def create_status(sha, status, params={})
+      if STATUSES.has_value? status
+        params.merge! :state => status
+        github_client.repos.statuses.create(repo_owner, repo, sha, params)
+      end
+    end
+
+    def get_statuses(sha, params={})
+      github_client.repos.statuses.list(repo_owner, repo, sha, params).collect do |h|
+        h.slice("state", "target_url", "description")
+      end
     end
 
     def pull_requests

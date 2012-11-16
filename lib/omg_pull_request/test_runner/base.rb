@@ -18,12 +18,14 @@ module OmgPullRequest
       def run
         log_test_details!
         make_comment_test_running!
+        make_status_test_running!
 
         git_client.checkout!(from_sha)
         merge_response = git_client.merge!(to_sha)
 
         if merge_response == :conflict
           make_comment_conflict!
+          make_status_conflict!
           return
         end
 
