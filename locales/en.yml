@@ -2,12 +2,16 @@ en:
   error:
     github:
       conflict: "### Unable To Run  \nA conflict prevented the test suite from being run.  Please manually resolve the conflict and the tests will be rerun.\nFrom `%{abbr_from_sha}` to `%{abbr_to_sha}`"
+    github_status:
+      conflict: "A conflict prevented the test suite from being run."
 
   start:
     banner: "OmgPullRequest %{version}\n
 From:         %{abbr_from_sha}\n
 To:           %{abbr_to_sha}\n
 Issue Number: %{issue_number}"
+    github_status:
+      message: "Running tests %{abbr_from_sha} to %{abbr_to_sha}"
     github:
       message: ":trollface: Running tests: `%{abbr_from_sha}` to `%{abbr_to_sha}`"
       lolcommits:
@@ -17,6 +21,9 @@ Issue Number: %{issue_number}"
     github:
       success: ":thumbsup: :shipit: \n### Tests Passed  \nFrom `%{abbr_from_sha}` to `%{abbr_to_sha}`\nTests took %{minutes} minutes, %{seconds} seconds.\n[results](%{output_file})"
       failure: ":thumbsdown: :fire: :broken_heart: \n### Tests Failed \n `%{abbr_from_sha}` to `%{abbr_to_sha}`\nTests too %{minutes} minutes, %{seconds} seconds.\n[results](%{output_file})"
+    github_status:
+      success: "Tests Passed (%{abbr_from_sha} to %{abbr_to_sha}) in %{minutes} minutes, %{seconds} seconds."
+      failure: "Tests Failed (%{abbr_from_sha} to %{abbr_to_sha}) in %{minutes} minutes, %{seconds} seconds."
     prowl:
       success: "Thumbs up, bro.\nPull request #%{issue_number}\n%{title}\nTests took %{minutes} minutes, %{seconds} seconds."
       failure: "Sad face to the max, homie.\nPull request #%{issue_number}\n%{title}\nTests took %{minutes} minutes, %{seconds} seconds."

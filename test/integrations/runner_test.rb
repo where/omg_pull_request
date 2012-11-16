@@ -55,7 +55,34 @@ class RunnerTest < MiniTest::Unit::TestCase
     runner.run
 
     posts = github.issues.comments.list(config[:login], 'omg', pr.number)
+    statuses = github.repos.statuses.list(config[:login], 'omg', pr.head.sha)
     assert_equal 2, posts.count
+    assert_equal "success", statuses.first.state
+    running = posts.first
+    pass = posts.last
+
+    assert running['body'].match(/Running tests/)
+    assert pass['body'].match(/Tests Passed/)
+  end
+
+  def test_pending
+    github.pull_requests.create config[:login], 'omg',
+        "head" => "#{config[:login]}:success",
+        "base" => "master",
+        "title" => 'Success'
+    
+    prs = github.pull_requests.list(config[:login], "omg")
+    assert_equal 1, prs.count
+    pr = prs.first
+
+    runner = build_runner(pr)
+    
+    runner.run
+
+    posts = github.issues.comments.list(config[:login], 'omg', pr.number)
+    statuses = github.repos.statuses.list(config[:login], 'omg', pr.head.sha)
+    assert_equal 2, posts.count
+    assert_equal "pending", statuses.at(1).state
     running = posts.first
     pass = posts.last
 
@@ -78,7 +105,9 @@ class RunnerTest < MiniTest::Unit::TestCase
     runner.run
 
     posts = github.issues.comments.list(config[:login], 'omg', pr.number)
+    statuses = github.repos.statuses.list(config[:login], 'omg', pr.head.sha)
     assert_equal 2, posts.count
+    assert_equal "failure", statuses.first.state
     running = posts.first
     pass = posts.last
 
@@ -101,7 +130,9 @@ class RunnerTest < MiniTest::Unit::TestCase
     runner.run
 
     posts = github.issues.comments.list(config[:login], 'omg', pr.number)
+    statuses = github.repos.statuses.list(config[:login], 'omg', pr.head.sha)
     assert_equal 2, posts.count
+    assert_equal "error", statuses.first.state
     running = posts.first
     conflict = posts.last
 
