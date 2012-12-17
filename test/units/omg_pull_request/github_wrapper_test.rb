@@ -50,6 +50,12 @@ module OmgPullRequest
       assert_equal expected_url, github_wrapper.make_gist("omg", "file_name")
     end
 
+    def test_find_pull_request
+      fakeweb_find_pull_request
+      pr = github_wrapper.find_pull_request(2)
+      assert_equal 2, pr.number
+    end
+
     protected
 
     def github_wrapper

@@ -31,6 +31,12 @@ MOCK_STORE = MOCK_CONFIGURATION.storage_class.new(
   :github_wrapper => MOCK_GITHUB_WRAPPER
 )
 
+def fakeweb_find_pull_request
+  FakeWeb.register_uri(:get,
+    "https://omg:pull_request@api.github.com/repos/kenmazaika/pictures/pulls/2",
+    :response => File.expand_path('test/fixtures/find_pull_request'))
+end
+
 def fakeweb_get_pull_request_commits
   FakeWeb.register_uri(:get,
     "https://omg:pull_request@api.github.com/repos/kenmazaika/pictures/pulls/10/commits",

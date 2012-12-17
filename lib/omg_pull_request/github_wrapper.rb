@@ -71,6 +71,10 @@ module OmgPullRequest
       gist.files[file_name].raw_url
     end
 
+    def find_pull_request(id)
+      github_client.pull_requests.find(repo_owner, repo, id)
+    end
+
     private
 
     extend Configuration::Helpers
