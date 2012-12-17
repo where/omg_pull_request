@@ -21,7 +21,7 @@ module OmgPullRequest
     def all_logins(pull_request)
       logins = [pull_request.user.login]
 
-      logins |= github_client.issues.comments.list(repo_owner, repo, pull_request.number).collect do |c| 
+      logins |= github_client.issues.comments.list(repo_owner, repo, 'issue_id' => pull_request.number).collect do |c| 
         c.user.login
       end
 

@@ -1,26 +1,20 @@
 class MockPullRequest
-  def number
-    10
+  def initialize(attributes={})
+    default_attributes = {
+      :number   => 10,
+      :user     => MockUser.new,
+      :title    => "Omg",
+      :html_url => "http://omg.com/html_url",
+      :head     => MockSha.new("HEAD_SHA"),
+      :base     => MockSha.new("BASE_SHA")
+    }
+    @attributes = default_attributes.merge(attributes)
   end
 
-  def user
-    MockUser.new
-  end
-
-  def html_url
-    "http://omg.com/html_url"
-  end
-
-  def head
-    MockSha.new("HEAD_SHA")
-  end
-
-  def base
-    MockSha.new("BASE_SHA")
-  end
-
-  def title
-    "Omg"
+  [:number, :user, :title, :html_url, :head, :base].each do |field|
+    define_method field do
+      @attributes[field]
+    end
   end
 
   class MockUser

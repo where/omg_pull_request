@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'fakeweb'
-require 'mocha'
+require 'mocha/setup'
 
 ENV['yml'] = File.join(File.expand_path("..", __FILE__), "fixtures/config.yml")
 require './lib/omg_pull_request'
@@ -79,3 +79,4 @@ def fakeweb_make_gist
     "https://omg:pull_request@api.github.com/gists",
     :response => File.expand_path('test/fixtures/make_gist'))
 end
+

@@ -16,6 +16,15 @@ module OmgPullRequest
       animated_shas[issue_number] = get_animated_shas(issue_number) + shas
     end
 
+    def get_recently_closed(pull_requests)
+      current_ids = pull_requests.collect { |a| a.number.to_s }
+      closed  = (@active_pull_requests || Array.new) - current_ids
+      @active_pull_requests = current_ids
+      
+      closed
+    end
+
+
     private
 
     def ran_hash
