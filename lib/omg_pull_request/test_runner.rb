@@ -31,12 +31,6 @@ module OmgPullRequest
           end
 
           pull_requests.each do |pr|
-            plugins.each do |plugin|
-              if plugin.respond_to?(:test_run)
-                plugin.test_run(pr)
-              end
-            end
-
             runner = configuration.runner_class.new(
               :configuration  => configuration, 
               :pull_request   => pr, 
@@ -45,6 +39,12 @@ module OmgPullRequest
             )
             next if CONTEXT.ran?(runner.request_sha)
             CONTEXT.ran(runner.request_sha)
+
+            plugins.each do |plugin|
+              if plugin.respond_to?(:test_run)
+                plugin.test_run(pr)
+              end
+            end
 
             runner.run
           end

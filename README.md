@@ -42,6 +42,8 @@ In addition, if there is a file located in `[omg_dir]/.omgprrc/initialize.rb` th
 
 The plugins the runner uses is defined at the root level of the config.yml file as a comma separated array of plugin class names.
 
+An example of a plugin that you can use can be found [here](https://gist.github.com/4331610).
+
 ## Installation
 
 * In a rails project, add `omg_pull_request` to the Gemfile.
