@@ -1,4 +1,4 @@
-HTTP/1.1 200 Internal Server Error
+HTTP/1.1 200 OK
 Server: nginx/0.8.52
 Date: Fri, 17 Dec 2010 02:02:58 GMT
 Content-Type: application/json; charset=utf-8

@@ -13,8 +13,6 @@ I18n.load_path = [
 I18n.locale = configuration.locale if configuration.locale
 
 initialize_file = File.expand_path("initialize.rb", configuration.omg_dir)
-if File.exists?(initialize_file)
-  require initialize_file
-end
+require initialize_file if File.exists?(initialize_file)
 
 TestRunner.start_daemon(configuration)
