@@ -1,3 +1,3 @@
 module OmgPullRequest
-  VERSION = "0.5.0.pre"
+  VERSION = "0.5.0"
 end

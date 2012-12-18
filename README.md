@@ -27,22 +27,18 @@ On running the test suite an animated gif can be generated of the lolcommits tha
 
 ### Plugin Support
 
-Omg Pull Request supports integration with third party plugins.  Plugins can be developed for project specific features, or features that most implementations won't use.
+Omg Pull Request supports integration with third party plugins, through an event driven architecture.  You can subscribe to the following events: `initialize`, `closed`, `merged`, `run`.
 
-To create a Plugin, create a class that has the following method signatures.
+The following methods allow you to subscribe to events.
 
 ```
-initialize(attributes)                   # Mandatory.  The test runner will initialize with a hash containing the key `options` with containing the contents of the parsed configuration yaml file.
-test_run(github_pull_request)            # Optional.  If present, called when the pull request test suite is run
-pull_request_closed(github_pull_request) # Optional.  If present, called when the pull request is no longer opened, and is not in the merged state
-pull_request_merged(github_pull_request) # Optional.  If present, called when the pull request is no longer opened, and is in the merged state
+OmgPullRequest::Plugin.subscribe(method, &block)
+OmgPullRequest::Plugin.initialize(&block)
 ```
 
-In addition, if there is a file located in `[omg_dir]/.omgprrc/initialize.rb` that file will be required when the runner is initialized.  This can be used to require files, or define classes that will be plugins.
+To see an example of a plugin [here](https://gist.github.com/4331610).
 
-The plugins the runner uses is defined at the root level of the config.yml file as a comma separated array of plugin class names.
 
-An example of a plugin that you can use can be found [here](https://gist.github.com/4331610).
 
 ## Installation
 
