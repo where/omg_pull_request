@@ -16,6 +16,10 @@ module OmgPullRequest
       end
     end
 
+    def self.instrument(event, args)
+      Plugin::Instrumenter.instance.instrument(event, args)
+    end
+
     class Instrumenter
       include Singleton
 
