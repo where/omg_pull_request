@@ -24,7 +24,6 @@ module OmgPullRequest
       closed
     end
 
-
     private
 
     def ran_hash

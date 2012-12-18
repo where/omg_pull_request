@@ -23,6 +23,7 @@ require 'omg_pull_request/git_client'
 require 'omg_pull_request/prowl'
 require 'omg_pull_request/lolcommits'
 require 'omg_pull_request/version'
+require 'omg_pull_request/plugin'
 
 module OmgPullRequest
   CONTEXT = Context.new
