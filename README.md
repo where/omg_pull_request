@@ -32,8 +32,8 @@ Omg Pull Request supports integration with third party plugins.  Plugins can be 
 To create a Plugin, create a class that has the following method signatures.
 
 ```
-initialize(attributes) # Mandatory.  The test runner will initialize with a hash containing the key `options` with containing the contents of the parsed configuration yaml file.
-test_run(github_pull_request) # Optional.  If present, called when the pull request test suite is run
+initialize(attributes)                   # Mandatory.  The test runner will initialize with a hash containing the key `options` with containing the contents of the parsed configuration yaml file.
+test_run(github_pull_request)            # Optional.  If present, called when the pull request test suite is run
 pull_request_closed(github_pull_request) # Optional.  If present, called when the pull request is no longer opened, and is not in the merged state
 pull_request_merged(github_pull_request) # Optional.  If present, called when the pull request is no longer opened, and is in the merged state
 ```
