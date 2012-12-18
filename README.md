@@ -71,6 +71,23 @@ A detailed specification of the available configuration options can be found in 
 
 You can see an example of a successful pull request that has been `omg_pull_request`ified here: https://github.com/where/omg_pull_request/pull/1.  And an example of a failed pull request that has been `omg_pull_request`ified here: https://github.com/where/omg_pull_request/pull/2.
 
+### Plugin Support
+
+Omg Pull Request supports integration with third party plugins.  Plugins can be developed for project specific features, or features that most implementations won't use.
+
+To create a Plugin, create a class that has the following method signatures.
+
+```
+initialize(attributes) # Mandatory.  The test runner will initialize with a hash containing the key `options` with containing the contents of the parsed configuration yaml file.
+test_run(github_pull_request) # Optional.  If present, called when the pull request test suite is run
+pull_request_closed(github_pull_request) # Optional.  If present, called when the pull request is no longer opened, and is not in the merged state
+pull_request_merged(github_pull_request) # Optional.  If present, called when the pull request is no longer opened, and is in the merged state
+```
+
+In addition, if there is a file located in `[omg_dir]/.omgprrc/initialize.rb` that file will be required when the runner is initialized.  This can be used to require files, or define classes that will be plugins.
+
+The plugins the runner uses is defined at the root level of the config.yml file as a comma separated array of plugin class names.
+
 ### Future Features
 
 Got an idea for a future feature?  Know of a cool service that you think omg_pull_request integration with would be nice?  Open up a github issue.
