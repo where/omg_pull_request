@@ -11,9 +11,32 @@ module OmgPullRequest
         :github_wrapper => github_wrapper
       )
 
+      plugins = configuration.plugins
+
       while(true)
         begin
-          github_wrapper.pull_requests.each do |pr|
+          pull_requests   = github_wrapper.pull_requests
+          closed_requests = CONTEXT.get_recently_closed(pull_requests)
+          closed_requests.each do |closed|
+            pr = github_wrapper.find_pull_request(closed)
+            merged = pr.merged 
+
+            plugins.each do |plugin|
+              if merged && plugin.respond_to?(:pull_request_merged)
+                plugin.pull_request_merged(pr)
+              elsif !merged && plugin.respond_to?(:pull_request_closed)
+                plugin.pull_request_closed(pr)
+              end
+            end
+          end
+
+          pull_requests.each do |pr|
+            plugins.each do |plugin|
+              if plugin.respond_to?(:test_run)
+                plugin.test_run(pr)
+              end
+            end
+
             runner = configuration.runner_class.new(
               :configuration  => configuration, 
               :pull_request   => pr, 
