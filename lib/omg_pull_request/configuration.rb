@@ -42,7 +42,7 @@ module OmgPullRequest
       p = self.config['plugins'] || ''
 
       @plugins = p.split(',').map(&:constantize).collect do |klass|
-        klass.new(:options => config.with_indifferent_access)
+        klass.new({ :options => config }.with_indifferent_access)
       end
     end
 
