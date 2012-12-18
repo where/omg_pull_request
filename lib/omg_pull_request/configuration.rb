@@ -37,15 +37,6 @@ module OmgPullRequest
       file
     end
 
-    def plugins
-      return @plugins if @plugins
-      p = self.config['plugins'] || ''
-
-      @plugins = p.split(',').map(&:constantize).collect do |klass|
-        klass.new({ :options => config }.with_indifferent_access)
-      end
-    end
-
     def omg_dir
       File.join(local_repo, '.omgprrc')
     end

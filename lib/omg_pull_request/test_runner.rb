@@ -1,7 +1,10 @@
 module OmgPullRequest
+
   module TestRunner
 
     def self.start_daemon(configuration=Configuration.new, daemonize=true)
+      instrumenter = Plugin::Instrumenter.instance
+
       github_wrapper    = GithubWrapper.new(
         :configuration => configuration
       )
@@ -11,7 +14,10 @@ module OmgPullRequest
         :github_wrapper => github_wrapper
       )
 
-      plugins = configuration.plugins
+      instrumenter.instrument("initialize", 
+        :configuration  => configuration,
+        :github_wrapper => github_wrapper
+      )
 
       while(true)
         begin
@@ -19,15 +25,8 @@ module OmgPullRequest
           closed_requests = CONTEXT.get_recently_closed(pull_requests)
           closed_requests.each do |closed|
             pr = github_wrapper.find_pull_request(closed)
-            merged = pr.merged 
-
-            plugins.each do |plugin|
-              if merged && plugin.respond_to?(:pull_request_merged)
-                plugin.pull_request_merged(pr)
-              elsif !merged && plugin.respond_to?(:pull_request_closed)
-                plugin.pull_request_closed(pr)
-              end
-            end
+            event = pr.merged ? 'merged' : 'closed'
+            instrumenter.instrument(event, :pull_request => pr)
           end
 
           pull_requests.each do |pr|
@@ -39,14 +38,10 @@ module OmgPullRequest
             )
             next if CONTEXT.ran?(runner.request_sha)
             CONTEXT.ran(runner.request_sha)
-
-            plugins.each do |plugin|
-              if plugin.respond_to?(:test_run)
-                plugin.test_run(pr)
-              end
-            end
-
+            
+            instrumenter.instrument("run", :pull_request => pr)
             runner.run
+
           end
 
         rescue => ex
