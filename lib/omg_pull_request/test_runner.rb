@@ -19,6 +19,7 @@ module OmgPullRequest
 
       while(true)
         begin
+          Plugin.instrument("execute", {})
           pull_requests = github_wrapper.pull_requests
 
           CONTEXT.get_recently_closed(pull_requests).each do |closed|

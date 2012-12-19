@@ -27,7 +27,7 @@ On running the test suite an animated gif can be generated of the lolcommits tha
 
 ### Plugin Support
 
-Omg Pull Request supports integration with third party plugins, through an event driven architecture.  You can subscribe to the following events: `initialize`, `closed`, `merged`, `run`.
+Omg Pull Request supports integration with third party plugins, through an event driven architecture.  You can subscribe to the following events: `initialize`, `closed`, `merged`, `run`, `execute`.
 
 The following methods allow you to subscribe to events.
 
