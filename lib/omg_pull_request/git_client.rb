@@ -17,12 +17,20 @@ module OmgPullRequest
     end
 
     def merge!(sha)
-      merge_response = `cd #{local_repo} && git merge #{sha} 2>&1`
+      merge_response, exit_code = execute_command "cd #{local_repo} && git merge #{sha} 2>&1"
       self.logger.log merge_response
-      merge_response.match(/CONFLICT/) ? :conflict : :success
+      return :success if exit_code.zero?
+      return :conflict if merge_response.match(/CONFLICT/)
+      
+      raise "Boom goes the dynamite!  Failure to do the merge in a non-predicatable way."
     end
 
     private
+
+    def execute_command(command)
+      resp = `#{command}`
+      [resp, $?.to_i]
+    end
 
     def execute_verify_success(command)
       result = `#{command}`

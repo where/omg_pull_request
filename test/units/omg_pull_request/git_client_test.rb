@@ -14,10 +14,18 @@ module OmgPullRequest
       git_client.unstub(:log)
     end
 
+    def test_execute_merge_no_conflict_but_not_success
+      git_client.expects(:execute_command).returns(["yolo", 100])
+      assert_raises RuntimeError do
+        git_client.merge!("swag")
+      end
+    end
+
     private
 
     def git_client
-      @git_client ||= GitClient.new(:logger => TestLogger.new)
+      @git_client ||= GitClient.new(:logger => TestLogger.new, 
+        :configuration => MOCK_CONFIGURATION)
     end
 
   end
