@@ -105,7 +105,7 @@ module OmgPullRequest
       protected
       # execute shell command, return true if success
       def execute!(command)
-        log `#{command}`
+        log `#{command} 2>&1`
         exit_code = $?.to_i
         success = exit_code == 0
       end

@@ -11,7 +11,7 @@ module OmgPullRequest
 
       # TODO test
       def store(data, file_name)
-        self.github_wrapper.make_gist(data, file_name)
+        self.github_wrapper.make_gist(data.string, file_name)
       end
     end
 

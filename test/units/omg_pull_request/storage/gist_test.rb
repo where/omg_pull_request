@@ -5,7 +5,7 @@ module OmgPullRequest
     class GistTest  < MiniTest::Unit::TestCase
       def test_store
         fakeweb_make_gist
-        storage.store("omg", "file_name")
+        storage.store(StringIO.new("omg"), "file_name")
       end
 
       protected

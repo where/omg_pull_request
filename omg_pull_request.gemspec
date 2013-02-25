@@ -22,5 +22,4 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency(%q<rake>, ">= 0.9.2.2")
   gem.add_runtime_dependency(%q<activesupport>, ">= 3.1.0")
   gem.add_runtime_dependency(%q<i18n>, ">= 0.6.0")
-
 end
