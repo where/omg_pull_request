@@ -20,7 +20,7 @@ Issue Number: %{issue_number}"
   completed:
     github:
       success: ":thumbsup: :shipit: \n### Tests Passed  \nFrom `%{abbr_from_sha}` to `%{abbr_to_sha}`\nTests took %{minutes} minutes, %{seconds} seconds.\n[results](%{output_file})"
-      failure: ":thumbsdown: :fire: :broken_heart: \n### Tests Failed \n `%{abbr_from_sha}` to `%{abbr_to_sha}`\nTests too %{minutes} minutes, %{seconds} seconds.\n[results](%{output_file})"
+      failure: ":thumbsdown: :fire: :broken_heart: \n### Tests Failed \n `%{abbr_from_sha}` to `%{abbr_to_sha}`\nTests took %{minutes} minutes, %{seconds} seconds.\n[results](%{output_file})"
     github_status:
       success: "Tests Passed (%{abbr_from_sha} to %{abbr_to_sha}) in %{minutes} minutes, %{seconds} seconds."
       failure: "Tests Failed (%{abbr_from_sha} to %{abbr_to_sha}) in %{minutes} minutes, %{seconds} seconds."
