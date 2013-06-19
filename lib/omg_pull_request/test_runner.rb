@@ -43,7 +43,7 @@ module OmgPullRequest
           end
 
         rescue => ex
-          puts "An Error Occured: #{ex.inspect}\n#{ex.backtrace}"
+          puts "An Error Occurred: #{ex.inspect}\n#{ex.backtrace.join "\n"}"
         end
 
         return if daemonize == false
