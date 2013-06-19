@@ -13,7 +13,7 @@ module OmgPullRequest
     end
 
     def checkout!(sha)
-      execute_verify_success "cd #{local_repo} && git reset --hard && git fetch && git checkout #{sha} 2>&1"
+      execute_verify_success "cd #{local_repo} && git reset --hard && git clean -f -d && git fetch && git checkout #{sha} 2>&1"
     end
 
     def merge!(sha)
