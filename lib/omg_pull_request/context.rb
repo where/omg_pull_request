@@ -31,7 +31,7 @@ module OmgPullRequest
     end
 
     def animated_shas
-      @animated_sha || Hash.new
+      @animated_shas ||= Hash.new
     end
   end
 end
